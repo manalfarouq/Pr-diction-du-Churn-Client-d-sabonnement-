@@ -57,13 +57,41 @@ def count_plot_affichage(dataframe_name,column_name):
     
     
 # fct pour encode toutes les colonnes catégorielles spécifiées en valeurs numeriques
-def encode_categorical(dataframe_name, columns):
+def encode_categorical(dataframe_name):
     from sklearn.preprocessing import LabelEncoder
     import pandas as pd
     
-    dataframe_encoded = dataframe_name.copy()  
-    for col in columns:
+    dataframe_encoded = dataframe_name.copy()
+    categorical_cols = dataframe_encoded.select_dtypes(include=['object']).columns
+    
+    for col in categorical_cols:
         le = LabelEncoder()
         dataframe_encoded[col] = le.fit_transform(dataframe_encoded[col])
     return dataframe_encoded
+
+# fct qui entraîne un modele, predit et calcule toutes les métriques cles
+def evaluate_model(model, X_train, X_test, y_train, y_test):
+    from sklearn.metrics import accuracy_score, recall_score, f1_score, roc_auc_score
+    from sklearn.preprocessing import MinMaxScaler
+    
+    model.fit(X_train, y_train)
+    
+    y_pred = model.predict(X_test)
+    
+    # if hasattr(model, "predict_proba"):
+    #     y_prob = model.predict_proba(X_test)[:,1]
+    # else:
+    #     y_prob = MinMaxScaler().fit_transform(model.decision_function(X_test).reshape(-1,1)).ravel()
+    
+    metrics = {
+        "Accuracy": accuracy_score(y_test, y_pred),
+        "Recall": recall_score(y_test, y_pred),
+        "F1-Score": f1_score(y_test, y_pred),
+        # "ROC-AUC": roc_auc_score(y_test, y_prob)
+    }
+    
+    return metrics
+
+
+
 

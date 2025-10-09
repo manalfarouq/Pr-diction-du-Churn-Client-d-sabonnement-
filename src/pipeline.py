@@ -70,28 +70,61 @@ def encode_categorical(dataframe_name):
     return dataframe_encoded
 
 # fct qui entraîne un modele, predit et calcule toutes les métriques cles
-def evaluate_model(model, X_train, X_test, y_train, y_test):
-    from sklearn.metrics import accuracy_score, recall_score, f1_score, roc_auc_score
+def evaluate_model(model, X_train, X_test, y_train, y_test,scale = True):
     from sklearn.preprocessing import MinMaxScaler
+    from sklearn.metrics import accuracy_score, recall_score, f1_score, roc_auc_score
     
+    # Normalisation si demandé
+    if scale:
+        scaler = MinMaxScaler()
+        X_train = scaler.fit_transform(X_train)
+        X_test = scaler.transform(X_test)
+    
+    # Entraînement du modèle
     model.fit(X_train, y_train)
     
+    # Prédictions
     y_pred = model.predict(X_test)
     
-    # if hasattr(model, "predict_proba"):
-    #     y_prob = model.predict_proba(X_test)[:,1]
-    # else:
-    #     y_prob = MinMaxScaler().fit_transform(model.decision_function(X_test).reshape(-1,1)).ravel()
+    # ROC-AUC si possible
+    if hasattr(model, "predict_proba"):
+        y_prob = model.predict_proba(X_test)[:, 1]
+        roc_auc = roc_auc_score(y_test, y_prob)
+    else:
+        roc_auc = None
     
     metrics = {
         "Accuracy": accuracy_score(y_test, y_pred),
         "Recall": recall_score(y_test, y_pred),
         "F1-Score": f1_score(y_test, y_pred),
-        # "ROC-AUC": roc_auc_score(y_test, y_prob)
+        "ROC-AUC": roc_auc
     }
     
     return metrics
 
 
+def plot_roc(models, X_test, y_test):
+    
+    import matplotlib.pyplot as plt
+    from sklearn.metrics import roc_curve, roc_auc_score
 
+    plt.figure(figsize=(8,6))
+    colors = ['blue', 'green', 'orange', 'purple', 'brown']
+
+    for i, (name, model) in enumerate(models.items()):
+        if hasattr(model, "predict_proba"):
+            y_prob = model.predict_proba(X_test)[:, 1]
+            fpr, tpr, _ = roc_curve(y_test, y_prob)
+            auc = roc_auc_score(y_test, y_prob)
+            plt.plot(fpr, tpr, color=colors[i % len(colors)], label=f"{name} (AUC = {auc:.2f})")
+
+    # Ligne de hasard
+    plt.plot([0, 1], [0, 1], color='red', linestyle='--', label='Hasard (AUC = 0.5)')
+
+    plt.title('Courbes ROC comparatives')
+    plt.xlabel('Taux de Faux Positifs (FPR)')
+    plt.ylabel('Taux de Vrais Positifs (TPR)')
+    plt.legend(loc='lower right')
+    plt.grid(True)
+    plt.show()
 

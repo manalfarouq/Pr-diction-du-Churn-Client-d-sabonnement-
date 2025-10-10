@@ -24,7 +24,7 @@ Pour suivre une **approche professionnelle** de gestion de projet :
 - La structure des fichiers a été pensée pour rester **claire et modulaire**.  
 
 <div align="center">
-  <img src="/home/manalfarouqi/Images/Captures d’écran" alt="Structure du projet" width="45%">
+  <img src="images/structure_du_projet.png" alt="Structure du projet" width="45%">
 </div>
 
 ---
@@ -81,6 +81,5 @@ Pour exécuter le projet, installez les bibliothèques nécessaires :
 - Distribution du churn
 
 <div align="center">
-  <img src="/home/manalfarouqi/Images/Captures d’écran" alt="ROC Curve" width="45%">  
-  <img src="./data/churn_distribution.png" alt="Distribution Churn" width="45%">
+  <img src="images/courbesROCComparatives.png" alt="ROC Curve" width="45%">  
 </div>

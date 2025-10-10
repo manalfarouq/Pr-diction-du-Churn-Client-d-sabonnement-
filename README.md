@@ -23,9 +23,27 @@ Pour suivre une **approche professionnelle** de gestion de projet :
 - J’ai créé plusieurs **branches sur GitHub** pour sauvegarder mes changements, notamment pour les **notebooks d’EDA** et les **tests unitaires avec Pytest**.  
 - La structure des fichiers a été pensée pour rester **claire et modulaire**.  
 
-<div align="center">
-  <img src="images/structure_du_projet.png" alt="Structure du projet" width="45%">
-</div>
+
+## Structure du projet
+
+La structure suivante présente l’organisation des fichiers et répertoires du projet :  
+
+```bash
+Prediction-du-Churn-Client-desabonnement-/
+
+│── data/                # Données CSV 
+│── src/                 # Code source principal
+│   └── pipeline.py      # Script du pipeline de Machine Learning
+│── main/                # Notebooks d’analyse exploratoire
+│   └── notebook.ipynb
+│── tests/               # Tests unitaires avec Pytest
+│   └── test_pipeline.py         
+│── requirements.txt     # Liste des dépendances
+│── README.md            # Documentation du projet
+```
+
+
+
 
 ---
 

@@ -71,7 +71,7 @@ Pour exécuter le projet, installez les bibliothèques nécessaires :
    - Pipeline Machine Learning : `src/pipeline.py`
 
 4. Exécuter les tests unitaires :  
-   - [ ] `pytest tests/ -v`
+   - [x] `pytest tests/ -v`
 
 ---
 
@@ -83,3 +83,25 @@ Pour exécuter le projet, installez les bibliothèques nécessaires :
 <div align="center">
   <img src="images/courbesROCComparatives.png" alt="ROC Curve" width="45%">  
 </div>
+
+## Choix du modèle
+
+Le choix du modèle final s’est basé sur la comparaison des **courbes ROC** et des valeurs d’**AUC (Area Under the Curve)** présentées ci-dessus.
+
+| Modèle                 | AUC  |
+|------------------------|------|
+| Logistic Regression    | 0.85 |
+| Random Forest          | 0.81 |
+
+La **Régression Logistique** a été retenue comme **modèle final** pour plusieurs raisons :
+
+- >**Meilleure performance globale :** Son AUC (0.85) est supérieur à celui du Random Forest (0.81), indiquant une meilleure capacité à distinguer les clients susceptibles de se désabonner.  
+- > **Interprétabilité :** La Régression Logistique permet une compréhension plus claire de l’influence de chaque variable sur le churn (poids des coefficients), ce qui facilite l’analyse métier.  
+- > **Efficacité computationnelle :** Elle est plus rapide à entraîner et à exécuter, particulièrement adaptée à des jeux de données de taille moyenne.  
+
+
+En revanche, le **Random Forest**, bien qu’efficace sur des ensembles complexes, a présenté une **légère perte de performance** (AUC = 0.81) et une **plus grande complexité** d’interprétation.  
+Il reste néanmoins utile pour des comparaisons ou des validations croisées dans un cadre d’ensemble (ensemble learning).
+
+Ainsi, le modèle **Logistic Regression** a été retenu pour la phase finale de déploiement et d’interprétation.
+

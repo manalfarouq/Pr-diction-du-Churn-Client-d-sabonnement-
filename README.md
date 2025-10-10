@@ -49,7 +49,8 @@ Pour exécuter le projet, installez les bibliothèques nécessaires :
 - [x] `matplotlib`  
 - [x] `seaborn`  
 - [x] `scikit-learn`  
-- [x] `pytest`  
+- [x] `pytest`
+- [x] `imbalanced-learn`
 
 ### Installer toutes les dépendances en une seule commande :
 
@@ -61,7 +62,6 @@ Pour exécuter le projet, installez les bibliothèques nécessaires :
 
 1. Cloner le dépôt :  
    - [x] `git clone https://github.com/manalfarouq/Prediction-du-Churn-Client-desabonnement-.git`  
-   - [x] `cd Churn-Prediction`
 
 2. Installer les dépendances :  
    - [x] `pip install -r requirements.txt`

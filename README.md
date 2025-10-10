@@ -1,32 +1,12 @@
 # Prédiction du Churn Client
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
-![Coverage](https://img.shields.io/badge/Coverage-95%25-yellow)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
-
----
-
-## Sommaire
-
-- [Prédiction du Churn Client](#prédiction-du-churn-client)
-  - [Sommaire](#sommaire)
-  - [Objectif](#objectif)
-  - [Gestion du projet](#gestion-du-projet)
-  - [Technologies utilisées](#technologies-utilisées)
-  - [Requirements](#requirements)
-      - [Installer toutes les dépendances en une seule commande :](#installer-toutes-les-dépendances-en-une-seule-commande-)
-  - [Installation et exécution](#installation-et-exécution)
-  - [Visualisations](#visualisations)
-  - [Tests unitaires](#tests-unitaires)
-
 ---
 
 ## Objectif
 
 Ce projet a pour but de développer un **pipeline de Machine Learning** pour prédire le **churn client** dans une entreprise de télécommunications.
 
-Objectifs principaux :
+Les objectifs principaux sont :
 
 - Identifier les clients à risque de désabonnement.  
 - Préparer et analyser les données (EDA) pour mieux comprendre les facteurs influençant le churn.  
@@ -37,14 +17,14 @@ Objectifs principaux :
 
 ## Gestion du projet
 
-Pour suivre une **approche professionnelle** :
+Pour suivre une **approche professionnelle** de gestion de projet :
 
-- Tâches organisées avec **Jira**.  
-- Branches GitHub pour les **notebooks d’EDA** et les **tests unitaires**.  
-- Structure des fichiers **claire et modulaire**.  
+- J’ai organisé mes tâches en utilisant **Jira**.  
+- J’ai créé plusieurs **branches sur GitHub** pour sauvegarder mes changements, notamment pour les **notebooks d’EDA** et les **tests unitaires avec Pytest**.  
+- La structure des fichiers a été pensée pour rester **claire et modulaire**.  
 
 <div align="center">
-  <img src="images/structure_du_projet.png" alt="Structure du projet" width="45%">
+  <img src="/home/manalfarouqi/Images/Captures d’écran" alt="Structure du projet" width="45%">
 </div>
 
 ---
@@ -54,57 +34,53 @@ Pour suivre une **approche professionnelle** :
 - [Python](https://www.python.org/)  
 - [Pandas](https://pandas.pydata.org/)  
 - [NumPy](https://numpy.org/)  
-- [Matplotlib](https://matplotlib.org/) & [Seaborn](https://seaborn.pydata.org/)  
-- [Scikit-learn](https://scikit-learn.org/stable/)  
-- [Pytest](https://docs.pytest.org/)  
+- [Matplotlib](https://matplotlib.org/) et [Seaborn](https://seaborn.pydata.org/) pour la visualisation  
+- [Scikit-learn](https://scikit-learn.org/stable/) pour le Machine Learning  
+- [Pytest](https://docs.pytest.org/) pour les tests unitaires  
 
 ---
 
 ## Requirements
 
-Installer les bibliothèques nécessaires :
+Pour exécuter le projet, installez les bibliothèques nécessaires :
 
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-pytest
+- [x] `pandas`  
+- [x] `numpy`  
+- [x] `matplotlib`  
+- [x] `seaborn`  
+- [x] `scikit-learn`  
+- [x] `pytest`  
 
-#### Installer toutes les dépendances en une seule commande :
+### Installer toutes les dépendances en une seule commande :
 
-pip install -r requirements.txt 
+- [x] `pip install -r requirements.txt`
 
+---
 
 ## Installation et exécution
-1.Cloner le dépôt :
-git clone https://github.com/ton-utilisateur/Churn-Prediction.git
-cd Churn-Prediction
 
-2.Installer les dépendances :
-pip install -r requirements.txt
+1. Cloner le dépôt :  
+   - [x] `git clone https://github.com/manalfarouq/Prediction-du-Churn-Client-desabonnement-.git`  
+   - [x] `cd Churn-Prediction`
 
-3.Lancer le projet :
-Notebooks pour l’EDA : main/notebooks.ipynb
-Pipeline Machine Learning : src/pipeline.py
+2. Installer les dépendances :  
+   - [x] `pip install -r requirements.txt`
 
-4.Exécuter les tests unitaires :
-pytest tests/
+3. Lancer le projet :  
+   - Notebooks pour l’EDA : `main/notebooks.ipynb`  
+   - Pipeline Machine Learning : `src/pipeline.py`
 
+4. Exécuter les tests unitaires :  
+   - [ ] `pytest tests/ -v`
+
+---
 
 ## Visualisations
 
---> ROC Curve
---> Distribution du churn
+- ROC Curve  
+- Distribution du churn
 
-<div align="center"> 
-    <img src="images/courbesROCComparatives.png" alt="ROC Curve" width="45%">
-
-## Tests unitaires
-
-Tous les tests sont situés dans le dossier tests/
-
-Utilisation de pytest pour vérifier les fonctions du pipeline
-Exemple de commande :
-
-pytest tests/ -v
+<div align="center">
+  <img src="/home/manalfarouqi/Images/Captures d’écran" alt="ROC Curve" width="45%">  
+  <img src="./data/churn_distribution.png" alt="Distribution Churn" width="45%">
+</div>

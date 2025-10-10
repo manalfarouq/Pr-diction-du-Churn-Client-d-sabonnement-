@@ -79,11 +79,16 @@ def evaluate_model(model, X_train, X_test, y_train, y_test,scale = True):
     from sklearn.preprocessing import MinMaxScaler
     from sklearn.metrics import accuracy_score, recall_score, f1_score, roc_auc_score
     
-    # Normalisation si demandé
+    # Séparer les colonnes numériques et binaires
+    num_cols = X_train.select_dtypes(include=['int64', 'float64']).columns
+    bin_cols = X_train.select_dtypes(include=['uint8']).columns  
+
+    # Normalisation 
     if scale:
         scaler = MinMaxScaler()
-        X_train = scaler.fit_transform(X_train)
-        X_test = scaler.transform(X_test)
+        X_train[num_cols] = scaler.fit_transform(X_train[num_cols])
+        X_test[num_cols] = scaler.transform(X_test[num_cols])
+
     
     # Entraînement du modèle
     model.fit(X_train, y_train)
@@ -91,12 +96,9 @@ def evaluate_model(model, X_train, X_test, y_train, y_test,scale = True):
     # Prédictions
     y_pred = model.predict(X_test)
     
-    # ROC-AUC si possible
-    if hasattr(model, "predict_proba"):
-        y_prob = model.predict_proba(X_test)[:, 1]
-        roc_auc = roc_auc_score(y_test, y_prob)
-    else:
-        roc_auc = None
+    # Calcul du ROC-AUC
+    y_prob = model.predict_proba(X_test)[:, 1]
+    roc_auc = roc_auc_score(y_test, y_prob)
     
     metrics = {
         "Accuracy": accuracy_score(y_test, y_pred),

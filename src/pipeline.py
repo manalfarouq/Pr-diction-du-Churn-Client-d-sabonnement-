@@ -1,8 +1,8 @@
 # fct pour importer le data
 def import_data(data_name):
     import pandas as pd
-    
-    return pd.read_csv(f"../data/{data_name}")
+
+    return pd.read_csv(f"./data/{data_name}")
 
 # fct qui vérifie si les colonnes d’un DataFrame ont le bon type de valeurs
 def check_column_types(df):
@@ -55,6 +55,11 @@ def count_plot_affichage(dataframe_name,column_name):
     plt.xticks(rotation=45)  
     plt.show()
     
+# fct pour séparer le dataset en train/test
+def split_data(X, y, test_size=0.2, random_state=42):
+    from sklearn.model_selection import train_test_split
+    return train_test_split(X, y, test_size=test_size, random_state=random_state)
+
     
 # fct pour encode toutes les colonnes catégorielles spécifiées en valeurs numeriques
 def encode_categorical(dataframe_name):

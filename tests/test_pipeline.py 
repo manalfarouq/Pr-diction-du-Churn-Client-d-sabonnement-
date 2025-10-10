@@ -1,13 +1,11 @@
 import pandas as pd
 import pytest
-from pipeline import split_data
+from pipeline import split_data, import_data
 
-
-df = pd.read_csv("../data/data.csv")
 
 @pytest.fixture
 def data_split():
-    
+    df = import_data("data.csv")
     X = df.drop(columns=["Churn"])
     y = df["Churn"]
     return X, y
